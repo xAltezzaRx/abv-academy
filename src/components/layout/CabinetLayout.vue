@@ -34,20 +34,22 @@ function logout() {
 </template>
 
 <style scoped>
-.cabinet-root{
+.cabinet-root {
   min-height: 100vh;
-  background: #fff;
+  background: var(--cab-bg);
+  color: var(--cab-text);
 }
 
-.cabinet-top{
+.cabinet-top {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: #fff;
+  background: rgba(247, 247, 248, 0.92);
+  backdrop-filter: blur(8px);
 }
 
-.cabinet-top__inner{
-  max-width: 1200px;
+.cabinet-top__inner {
+  max-width: var(--cab-container);
   margin: 0 auto;
   padding: 24px 24px 12px;
   display: flex;
@@ -55,38 +57,36 @@ function logout() {
   justify-content: space-between;
 }
 
-.cabinet-top__title{
+.cabinet-top__title {
   margin: 0;
-  font-size: 44px; /* под твою стилистику можно подогнать */
-  font-weight: 700;
-  line-height: 1.1;
+  font-size: var(--cab-title-xl);
+  font-weight: 900;
+  line-height: 1;
+  color: var(--cab-accent);
 }
 
-.cabinet-top__logout{
+.cabinet-top__logout {
   background: transparent;
   border: none;
-  color: #6A00A8; /* твой фиолетовый */
-  font-weight: 600;
+  color: var(--cab-accent);
+  font-weight: 800;
   cursor: pointer;
-  font-size: 16px;
+  font-size: var(--cab-text-md);
 }
 
-.cabinet-main{
-  max-width: 1200px;
+.cabinet-main {
+  max-width: var(--cab-container);
   margin: 0 auto;
   padding: 0 24px 48px;
 }
 
-/* MOBILE (<=800) — шапка НЕ исчезает, просто компактнее */
-@media (max-width: 800px){
-  .cabinet-top__inner{
+@media (max-width: 800px) {
+  .cabinet-top__inner {
     padding: 16px 16px 8px;
   }
-  .cabinet-top__title{
-    font-size: 24px;
-  }
-  .cabinet-main{
-    padding: 0 16px 84px; /* оставь место под нижнюю навигацию */
+
+  .cabinet-main {
+    padding: 0 16px 84px;
   }
 }
 </style>

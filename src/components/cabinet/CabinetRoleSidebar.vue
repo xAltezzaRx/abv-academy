@@ -32,19 +32,26 @@ const items = computed(() => getNavItemsByRole(auth.role));
 
 .cab-menu__item {
   text-align: left;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: #f3f3f3;
-  font-size: 14px;
-  font-weight: 600;
+  padding: 18px 18px;
+  border-radius: var(--cab-radius-sm);
+  background: var(--cab-surface);
+  font-size: var(--cab-text-md);
+  font-weight: 800;
   display: block;
-  color: inherit;
+  color: var(--cab-text);
   text-decoration: none;
+  box-shadow: var(--cab-shadow-sm);
+  border: 1px solid var(--cab-border);
+  transition: background .15s ease, color .15s ease, transform .08s ease;
+}
+
+.cab-menu__item:hover {
+  transform: translateY(-1px);
 }
 
 .cab-menu__item.is-active {
-  background: #5b129b;
-  color: #fff;
+  background: var(--cab-accent);
+  color: var(--cab-text-on-accent);
 }
 
 @media (max-width: 800px) {

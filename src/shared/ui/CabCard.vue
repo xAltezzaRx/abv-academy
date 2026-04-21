@@ -12,13 +12,19 @@ defineProps({
 
 <style scoped>
 .card {
-  background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 8px 22px rgba(0,0,0,.06);
-  border: 1px solid rgba(0,0,0,.06);
+  background: var(--cab-surface);
+  border-radius: var(--cab-radius-md);
+  box-shadow: var(--cab-shadow-sm);
+  border: 1px solid var(--cab-border);
 }
 
 .card--padded {
-  padding: 14px;
+  padding: 16px;
+}
+
+@media (max-width: 800px) {
+  .card--padded {
+    padding: 14px;
+  }
 }
 </style>

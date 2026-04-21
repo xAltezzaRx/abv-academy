@@ -33,7 +33,7 @@ defineProps({
 
 <style scoped>
 .cab__container {
-  max-width: 1280px;
+  max-width: var(--cab-container);
   margin: 0 auto;
   padding: 0 24px 24px;
 }
@@ -41,8 +41,8 @@ defineProps({
 .cab__grid {
   margin-top: 16px;
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 18px;
+  grid-template-columns: var(--cab-sidebar-width) minmax(0, 1fr);
+  gap: var(--cab-gap);
   align-items: start;
 }
 
@@ -59,7 +59,7 @@ defineProps({
 
   .cab__grid {
     grid-template-columns: 1fr;
-    gap: 12px;
+    gap: var(--cab-gap);
   }
 
   .cab__widgets {

@@ -1461,5 +1461,54 @@ html, body, #app { overflow-x: hidden; }
   .mnav { display: flex; } /* чтобы flex работал */
 }
 
+:root {
+  /* Brand */
+  --cab-accent: #7a3db3;
+  --cab-accent-dark: #61279a;
+  --cab-accent-soft: #efe4fb;
+
+  /* Surface */
+  --cab-bg: #f7f7f8;
+  --cab-surface: #ffffff;
+  --cab-surface-muted: #f3f3f5;
+  --cab-border: rgba(25, 25, 25, 0.06);
+
+  /* Text */
+  --cab-text: #202020;
+  --cab-text-soft: #6f6f76;
+  --cab-text-on-accent: #ffffff;
+
+  /* Radius */
+  --cab-radius-xs: 12px;
+  --cab-radius-sm: 16px;
+  --cab-radius-md: 20px;
+  --cab-radius-lg: 24px;
+
+  /* Shadow */
+  --cab-shadow-sm: 0 6px 18px rgba(0, 0, 0, 0.05);
+  --cab-shadow-md: 0 10px 28px rgba(0, 0, 0, 0.08);
+
+  /* Layout */
+  --cab-container: 1280px;
+  --cab-gap: 18px;
+  --cab-sidebar-width: 280px;
+
+  /* Typography */
+  --cab-title-xl: 56px;
+  --cab-title-lg: 28px;
+  --cab-title-md: 22px;
+  --cab-text-md: 16px;
+  --cab-text-sm: 14px;
+  --cab-text-xs: 12px;
+}
+
+@media (max-width: 800px) {
+  :root {
+    --cab-title-xl: 28px;
+    --cab-title-lg: 22px;
+    --cab-title-md: 18px;
+    --cab-gap: 12px;
+  }
+}
 
 
