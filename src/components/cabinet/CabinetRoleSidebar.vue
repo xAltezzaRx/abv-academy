@@ -27,16 +27,16 @@ const items = computed(() => getNavItemsByRole(auth.role));
 <style scoped>
 .cab-menu {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .cab-menu__item {
-  text-align: left;
-  padding: 18px 18px;
-  border-radius: var(--cab-radius-sm);
+  text-align: center;
+  padding: 18px 16px;
+  border-radius: 20px;
   background: var(--cab-surface);
-  font-size: var(--cab-text-md);
-  font-weight: 800;
+  font-size: 16px;
+  font-weight: 700;
   display: block;
   color: var(--cab-text);
   text-decoration: none;

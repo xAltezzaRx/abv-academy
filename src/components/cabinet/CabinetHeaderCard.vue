@@ -17,7 +17,9 @@ defineProps({
 
 <template>
   <section class="card">
-    <div class="card__avatar" />
+    <div class="card__avatar-wrap">
+      <div class="card__avatar" />
+    </div>
 
     <div class="card__body">
       <h2 class="card__title">{{ title }}</h2>
@@ -39,74 +41,102 @@ defineProps({
 <style scoped>
 .card {
   display: grid;
-  grid-template-columns: 92px 1fr;
-  gap: 16px;
+  grid-template-columns: 150px 1fr;
+  gap: 22px;
   align-items: start;
 
-  padding: 18px;
-  border-radius: 20px;
-  background: #fff;
-  box-shadow: 0 8px 22px rgba(0,0,0,.06);
-  border: 1px solid rgba(0,0,0,.06);
+  padding: 28px 32px;
+  border-radius: var(--cab-radius-lg);
+  background: var(--cab-surface);
+  border: 1px solid var(--cab-border);
+  box-shadow: var(--cab-shadow-md);
+}
+
+.card__avatar-wrap {
+  display: flex;
+  justify-content: center;
 }
 
 .card__avatar {
-  width: 92px;
-  height: 92px;
+  width: 142px;
+  height: 182px;
   border-radius: 18px;
-  background: #e9e9e9;
+  background:
+      linear-gradient(180deg, rgba(122, 61, 179, 0.06), rgba(122, 61, 179, 0.14)),
+      var(--cab-surface-muted);
+  border: 1px solid rgba(122, 61, 179, 0.08);
+}
+
+.card__body {
+  min-width: 0;
 }
 
 .card__title {
-  margin: 0;
+  margin: 8px 0 0;
   font-size: 28px;
+  line-height: 1.05;
   font-weight: 900;
-  line-height: 1.1;
+  color: var(--cab-text);
+  text-transform: uppercase;
 }
 
 .card__subtitle {
-  margin-top: 6px;
-  font-size: 14px;
-  opacity: .75;
+  margin-top: 10px;
+  font-size: 16px;
+  color: var(--cab-text-soft);
 }
 
 .card__rows {
-  margin-top: 12px;
+  margin-top: 18px;
   display: grid;
-  gap: 8px;
+  gap: 12px;
 }
 
 .card__row {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
-  font-size: 14px;
+  gap: 8px;
+  font-size: 16px;
+  line-height: 1.25;
 }
 
 .card__label {
   font-weight: 900;
+  color: var(--cab-text);
 }
 
 .card__value {
-  opacity: .9;
+  color: var(--cab-text-soft);
 }
 
 @media (max-width: 800px) {
   .card {
-    grid-template-columns: 72px 1fr;
-    gap: 12px;
+    grid-template-columns: 76px 1fr;
+    gap: 14px;
     padding: 14px;
-    border-radius: 16px;
+    border-radius: var(--cab-radius-md);
   }
 
   .card__avatar {
-    width: 72px;
-    height: 72px;
-    border-radius: 14px;
+    width: 64px;
+    height: 64px;
+    border-radius: 16px;
   }
 
   .card__title {
-    font-size: 20px;
+    margin-top: 0;
+    font-size: 18px;
+    text-transform: none;
+  }
+
+  .card__subtitle {
+    margin-top: 4px;
+    font-size: 13px;
+  }
+
+  .card__rows {
+    margin-top: 10px;
+    gap: 8px;
   }
 
   .card__row {
