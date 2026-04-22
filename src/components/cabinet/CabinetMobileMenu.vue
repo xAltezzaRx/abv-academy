@@ -100,7 +100,7 @@ onBeforeUnmount(() => {
 .sheet__backdrop {
   position: absolute;
   inset: 0;
-  background: rgba(0,0,0,.32);
+  background: rgba(18, 18, 18, 0.36);
 }
 
 .sheet__panel {
@@ -109,17 +109,17 @@ onBeforeUnmount(() => {
   right: 0;
   bottom: 0;
 
-  border-radius: 20px 20px 0 0;
-  background: #fff;
+  border-radius: 22px 22px 0 0;
+  background: var(--cab-surface);
   padding: 10px 12px calc(16px + env(safe-area-inset-bottom));
-  box-shadow: 0 -10px 30px rgba(0,0,0,.14);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.14);
 }
 
 .sheet__handle {
-  width: 44px;
+  width: 42px;
   height: 5px;
   border-radius: 999px;
-  background: #ddd;
+  background: #d5d5db;
   margin: 0 auto 10px;
 }
 
@@ -134,6 +134,7 @@ onBeforeUnmount(() => {
 .sheet__title {
   font-size: 16px;
   font-weight: 900;
+  color: var(--cab-text);
 }
 
 .sheet__close {
@@ -141,7 +142,7 @@ onBeforeUnmount(() => {
   background: transparent;
   cursor: pointer;
   font-weight: 800;
-  color: #5b129b;
+  color: var(--cab-accent);
 }
 
 .sheet__nav {
@@ -154,18 +155,18 @@ onBeforeUnmount(() => {
   align-items: center;
   gap: 10px;
 
-  min-height: 48px;
+  min-height: 50px;
   padding: 12px 14px;
-  border-radius: 14px;
+  border-radius: 16px;
   text-decoration: none;
-  color: inherit;
-  background: #f3f3f3;
+  color: var(--cab-text);
+  background: var(--cab-surface-muted);
   font-weight: 800;
 }
 
 .sheet__item.is-active {
-  background: #5b129b;
-  color: #fff;
+  background: var(--cab-accent);
+  color: var(--cab-text-on-accent);
 }
 
 .sheet__icon {
@@ -177,6 +178,7 @@ onBeforeUnmount(() => {
 .fade-leave-active {
   transition: opacity .18s ease;
 }
+
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
@@ -186,6 +188,7 @@ onBeforeUnmount(() => {
 .sheet-up-leave-active {
   transition: transform .2s ease, opacity .2s ease;
 }
+
 .sheet-up-enter-from,
 .sheet-up-leave-to {
   transform: translateY(20px);

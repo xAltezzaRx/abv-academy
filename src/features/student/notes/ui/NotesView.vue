@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import AppSkeleton from "@/shared/ui/AppSkeleton.vue";
 import AppError from "@/shared/ui/AppError.vue";
 import AppEmpty from "@/shared/ui/AppEmpty.vue";
@@ -9,6 +10,12 @@ import { useStudentNotesStore } from "../model/notes.store";
 
 const notesStore = useStudentNotesStore();
 const { isLoading, isError, isEmpty } = useAsyncViewState(notesStore, "items");
+
+onMounted(() => {
+  if (!notesStore.items.length && !notesStore.loading) {
+    notesStore.fetchNotes();
+  }
+});
 </script>
 
 <template>
@@ -32,8 +39,10 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(notesStore, "items");
 
       <div class="list">
         <CabCard v-for="n in notesStore.items" :key="n.id">
-          <div class="date">{{ n.date }}</div>
-          <div class="text">{{ n.text }}</div>
+          <div class="note">
+            <div class="note__date">{{ n.date }}</div>
+            <div class="note__text">{{ n.text }}</div>
+          </div>
         </CabCard>
       </div>
     </div>
@@ -43,19 +52,30 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(notesStore, "items");
 <style scoped>
 .list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
-.date {
-  font-weight: 900;
+.note__date {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--cab-accent-soft);
+  color: var(--cab-accent);
   font-size: 12px;
-  opacity: .7;
-  margin-bottom: 8px;
+  font-weight: 900;
 }
 
-.text {
-  font-size: 13px;
-  line-height: 1.4;
-  opacity: .9;
+.note__text {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--cab-text);
+}
+
+@media (max-width: 800px) {
+  .note__text {
+    font-size: 13px;
+  }
 }
 </style>

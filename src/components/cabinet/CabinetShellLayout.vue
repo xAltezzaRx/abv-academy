@@ -54,12 +54,13 @@ defineProps({
 
 @media (max-width: 800px) {
   .cab__container {
-    padding: 0 16px 84px;
+    padding: 0 16px 88px;
   }
 
   .cab__grid {
     grid-template-columns: 1fr;
-    gap: var(--cab-gap);
+    gap: 12px;
+    margin-top: 12px;
   }
 
   .cab__widgets {

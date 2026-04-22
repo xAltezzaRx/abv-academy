@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import AppSkeleton from "@/shared/ui/AppSkeleton.vue";
 import AppError from "@/shared/ui/AppError.vue";
 import AppEmpty from "@/shared/ui/AppEmpty.vue";
@@ -9,6 +10,12 @@ import { useStudentProfileStore } from "../model/profile.store";
 
 const profileStore = useStudentProfileStore();
 const { isLoading, isError, isEmpty } = useAsyncViewState(profileStore, "data");
+
+onMounted(() => {
+  if (!profileStore.data && !profileStore.loading) {
+    profileStore.fetchProfile();
+  }
+});
 </script>
 
 <template>
@@ -61,32 +68,50 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(profileStore, "data");
 
 <style scoped>
 .name {
+  font-size: 22px;
   font-weight: 900;
-  font-size: 15px;
-  margin-bottom: 12px;
+  color: var(--cab-accent);
+  margin-bottom: 16px;
+  line-height: 1.1;
 }
 
 .grid {
   display: grid;
-  gap: 10px;
+  gap: 12px;
 }
 
 .item {
   display: grid;
-  gap: 2px;
-  padding: 10px 12px;
-  border-radius: 14px;
-  background: #f3f3f3;
+  gap: 4px;
+  padding: 14px 16px;
+  border-radius: 16px;
+  background: var(--cab-surface-muted);
 }
 
 .label {
   font-size: 12px;
-  opacity: .7;
-  font-weight: 800;
+  font-weight: 900;
+  color: var(--cab-text-soft);
+  text-transform: uppercase;
 }
 
 .value {
-  font-size: 13px;
-  font-weight: 900;
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--cab-text);
+}
+
+@media (max-width: 800px) {
+  .name {
+    font-size: 18px;
+  }
+
+  .item {
+    padding: 12px 14px;
+  }
+
+  .value {
+    font-size: 14px;
+  }
 }
 </style>

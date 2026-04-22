@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import AppSkeleton from "@/shared/ui/AppSkeleton.vue";
 import AppError from "@/shared/ui/AppError.vue";
 import AppEmpty from "@/shared/ui/AppEmpty.vue";
@@ -9,6 +10,12 @@ import { useStudentGradesStore } from "../model/grades.store";
 
 const gradesStore = useStudentGradesStore();
 const { isLoading, isError, isEmpty } = useAsyncViewState(gradesStore, "items");
+
+onMounted(() => {
+  if (!gradesStore.items.length && !gradesStore.loading) {
+    gradesStore.fetchGrades();
+  }
+});
 </script>
 
 <template>
@@ -30,15 +37,24 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(gradesStore, "items");
     <div v-else>
       <CabSectionTitle>Ведомость</CabSectionTitle>
 
+      <div class="summary">
+        <CabCard>
+          <div class="summary__label">Средний балл</div>
+          <div class="summary__value">4.6</div>
+        </CabCard>
+      </div>
+
       <div class="list">
         <CabCard v-for="g in gradesStore.items" :key="g.id">
           <div class="row">
-            <div class="main">
-              <div class="subject">{{ g.subject }}</div>
-              <div class="teacher">{{ g.teacher }}</div>
+            <div class="row__main">
+              <div class="row__subject">{{ g.subject }}</div>
+              <div class="row__teacher">{{ g.teacher }}</div>
             </div>
 
-            <div class="mark">{{ g.current }}</div>
+            <div class="row__mark">
+              {{ g.current }}
+            </div>
           </div>
         </CabCard>
       </div>
@@ -47,37 +63,83 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(gradesStore, "items");
 </template>
 
 <style scoped>
+.summary {
+  margin-bottom: 14px;
+}
+
+.summary__label {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--cab-text-soft);
+}
+
+.summary__value {
+  margin-top: 6px;
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--cab-accent);
+  line-height: 1;
+}
+
 .list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
 .row {
   display: flex;
-  gap: 12px;
   justify-content: space-between;
   align-items: center;
+  gap: 14px;
 }
 
-.subject {
+.row__main {
+  min-width: 0;
+}
+
+.row__subject {
+  font-size: 18px;
   font-weight: 900;
-  font-size: 14px;
-  margin-bottom: 4px;
+  color: var(--cab-text);
 }
 
-.teacher {
-  font-size: 12px;
-  opacity: .75;
+.row__teacher {
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--cab-text-soft);
 }
 
-.mark {
-  width: 44px;
-  height: 44px;
-  border-radius: 14px;
-  background: #f3f3f3;
+.row__mark {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
   display: grid;
   place-items: center;
+  background: var(--cab-accent);
+  color: var(--cab-text-on-accent);
+  font-size: 20px;
   font-weight: 900;
-  font-size: 16px;
+  flex: 0 0 auto;
+}
+
+@media (max-width: 800px) {
+  .summary__value {
+    font-size: 28px;
+  }
+
+  .row__subject {
+    font-size: 16px;
+  }
+
+  .row__teacher {
+    font-size: 12px;
+  }
+
+  .row__mark {
+    width: 44px;
+    height: 44px;
+    font-size: 18px;
+    border-radius: 14px;
+  }
 }
 </style>

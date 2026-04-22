@@ -1,4 +1,5 @@
 <script setup>
+import { onMounted } from "vue";
 import AppSkeleton from "@/shared/ui/AppSkeleton.vue";
 import AppError from "@/shared/ui/AppError.vue";
 import AppEmpty from "@/shared/ui/AppEmpty.vue";
@@ -9,6 +10,12 @@ import { useStudentHomeworkStore } from "../model/homework.store";
 
 const hwStore = useStudentHomeworkStore();
 const { isLoading, isError, isEmpty } = useAsyncViewState(hwStore, "items");
+
+onMounted(() => {
+  if (!hwStore.items.length && !hwStore.loading) {
+    hwStore.fetchHomework();
+  }
+});
 </script>
 
 <template>
@@ -32,13 +39,16 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(hwStore, "items");
 
       <div class="list">
         <CabCard v-for="h in hwStore.items" :key="h.id">
-          <div class="row">
-            <div class="main">
-              <div class="subject">{{ h.subject }}</div>
-              <div class="text">{{ h.title }}</div>
+          <div class="task">
+            <div class="task__main">
+              <div class="task__subject">{{ h.subject }}</div>
+              <div class="task__text">{{ h.title }}</div>
             </div>
 
-            <div class="badge">до {{ h.due }}</div>
+            <div class="task__side">
+              <div class="task__badge">до {{ h.due }}</div>
+              <div class="task__status">Новое</div>
+            </div>
           </div>
         </CabCard>
       </div>
@@ -49,34 +59,75 @@ const { isLoading, isError, isEmpty } = useAsyncViewState(hwStore, "items");
 <style scoped>
 .list {
   display: grid;
-  gap: 12px;
+  gap: 14px;
 }
 
-.row {
+.task {
   display: flex;
-  gap: 12px;
   justify-content: space-between;
+  gap: 16px;
   align-items: flex-start;
 }
 
-.subject {
+.task__main {
+  min-width: 0;
+}
+
+.task__subject {
+  font-size: 18px;
   font-weight: 900;
+  color: var(--cab-accent);
+}
+
+.task__text {
+  margin-top: 8px;
   font-size: 14px;
-  margin-bottom: 6px;
+  line-height: 1.45;
+  color: var(--cab-text);
 }
 
-.text {
-  opacity: .8;
-  font-size: 13px;
-  line-height: 1.35;
-}
-
-.badge {
+.task__side {
   flex: 0 0 auto;
-  padding: 8px 10px;
-  border-radius: 12px;
-  background: #f3f3f3;
-  font-weight: 900;
+  display: grid;
+  gap: 8px;
+  justify-items: end;
+}
+
+.task__badge {
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: var(--cab-accent-soft);
+  color: var(--cab-accent);
   font-size: 12px;
+  font-weight: 900;
+}
+
+.task__status {
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f3f3f5;
+  color: var(--cab-text-soft);
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+@media (max-width: 800px) {
+  .task {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .task__subject {
+    font-size: 16px;
+  }
+
+  .task__text {
+    font-size: 13px;
+  }
+
+  .task__side {
+    justify-items: start;
+  }
 }
 </style>

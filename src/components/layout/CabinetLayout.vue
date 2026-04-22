@@ -82,11 +82,22 @@ function logout() {
 
 @media (max-width: 800px) {
   .cabinet-top__inner {
-    padding: 16px 16px 8px;
+    padding: 14px 16px 8px;
+    align-items: flex-start;
+  }
+
+  .cabinet-top__title {
+    font-size: 24px;
+    line-height: 1;
+  }
+
+  .cabinet-top__logout {
+    font-size: 14px;
+    margin-top: 4px;
   }
 
   .cabinet-main {
-    padding: 0 16px 84px;
+    padding: 0 16px 88px;
   }
 }
 </style>

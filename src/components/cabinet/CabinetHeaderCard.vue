@@ -111,10 +111,10 @@ defineProps({
 
 @media (max-width: 800px) {
   .card {
-    grid-template-columns: 76px 1fr;
-    gap: 14px;
+    grid-template-columns: 64px 1fr;
+    gap: 12px;
     padding: 14px;
-    border-radius: var(--cab-radius-md);
+    border-radius: 18px;
   }
 
   .card__avatar {
@@ -125,22 +125,24 @@ defineProps({
 
   .card__title {
     margin-top: 0;
-    font-size: 18px;
+    font-size: 16px;
+    line-height: 1.1;
     text-transform: none;
   }
 
   .card__subtitle {
     margin-top: 4px;
-    font-size: 13px;
+    font-size: 12px;
   }
 
   .card__rows {
     margin-top: 10px;
-    gap: 8px;
+    gap: 6px;
   }
 
   .card__row {
-    font-size: 13px;
+    font-size: 12px;
+    line-height: 1.25;
   }
 }
 </style>
