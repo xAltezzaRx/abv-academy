@@ -4,12 +4,14 @@
  * @property {string} subject
  * @property {string} teacher
  * @property {string} room
+ * @property {string} [description]
  */
 
 /**
  * @typedef {Object} ScheduleDay
- * @property {string} dayLabel  // "Вторник"
- * @property {string} dateLabel // "29.04"
+ * @property {string} dayLabel
+ * @property {string} dateLabel
+ * @property {boolean} [isToday]
  * @property {Lesson[]} lessons
  */
 
